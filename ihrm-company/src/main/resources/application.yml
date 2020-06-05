@@ -1,0 +1,12 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: ihrm-company
+  datasource:
+    url: jdbc:mysql://localhost:3306/ihrm?useSSL=false&useUnicode=true&characterEncoding=utf-8&characterSetResults=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
