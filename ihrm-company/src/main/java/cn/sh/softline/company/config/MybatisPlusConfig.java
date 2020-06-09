@@ -5,6 +5,9 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * mybatis-plus的分页插件
+ */
 @Configuration
 @MapperScan("cn.sh.softline.company.mapper")
 public class MybatisPlusConfig {
