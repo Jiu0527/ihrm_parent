@@ -22,6 +22,7 @@ import java.util.List;
  * @author rz045
  * @since 2020-06-04
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/company")
 @Api(value = "企业服务",tags = "企业服务")
