@@ -42,18 +42,19 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("C:\\Users\\rz-045\\Desktop\\spring-cloud-demo-master\\ihrm_parent\\ihrm-company" + "/src/main/java");
+        gc.setOutputDir("C:\\Users\\rz-045\\Desktop\\spring-cloud-demo-master\\ihrm_parent\\ihrm-system" + "/src/main/java");
         gc.setAuthor("rz045");
         gc.setOpen(false);
-        gc.setBaseColumnList(true);
-        gc.setBaseResultMap(true);
+//        gc.setBaseColumnList(true);
+//        gc.setBaseResultMap(true);
+        gc.setFileOverride(true);
         gc.setDateType(DateType.ONLY_DATE);
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
-        gc.setControllerName("%sController");
+       /* gc.setControllerName("%sController");
         // 默认service接口名IXXXService 自定义指定之后就不会用I开头了
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
-        gc.setMapperName("%sMapper");
+        gc.setMapperName("%sMapper");*/
         gc.setXmlName("%sMapper");
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
@@ -71,9 +72,9 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
         pc.setParent("cn.sh.softline");
-        pc.setController("controller");
-        pc.setService("service");
-        pc.setMapper("mapper");
+//        pc.setController("controller");
+//        pc.setService("service");
+//        pc.setMapper("mapper");
         pc.setEntity("entity");
         mpg.setPackageInfo(pc);
 
@@ -137,14 +138,14 @@ public class CodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
+        //strategy.setRestControllerStyle(true);
         // 公共父类
         //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
         //strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         //strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix("co");
+        strategy.setTablePrefix("pe");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
