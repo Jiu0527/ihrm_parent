@@ -2,7 +2,7 @@ package cn.sh.softline.system.service.impl;
 
 import cn.sh.softline.system.entity.Role;
 import cn.sh.softline.system.mapper.RoleMapper;
-import cn.sh.softline.system.service.IRoleService;
+import cn.sh.softline.system.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-06-09
  */
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
 }

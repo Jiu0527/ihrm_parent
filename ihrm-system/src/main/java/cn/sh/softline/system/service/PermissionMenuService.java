@@ -1,6 +1,6 @@
 package cn.sh.softline.system.service;
 
-import cn.sh.softline.system.entity.Role;
+import cn.sh.softline.system.entity.PermissionMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author rz045
  * @since 2020-06-09
  */
-public interface IRoleService extends IService<Role> {
+public interface PermissionMenuService extends IService<PermissionMenu> {
 
 }

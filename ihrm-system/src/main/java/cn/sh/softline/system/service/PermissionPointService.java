@@ -1,6 +1,6 @@
 package cn.sh.softline.system.service;
 
-import cn.sh.softline.system.entity.Permission;
+import cn.sh.softline.system.entity.PermissionPoint;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author rz045
  * @since 2020-06-09
  */
-public interface IPermissionService extends IService<Permission> {
+public interface PermissionPointService extends IService<PermissionPoint> {
 
 }

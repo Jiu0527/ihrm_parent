@@ -71,7 +71,19 @@ public class UserController {
     public Result queryInfo(@RequestParam("pageNo") long pageNo, @RequestParam("size") long size, @RequestBody User user) {
         Page page = new Page(pageNo,size);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        //todo 没写完
-        return null;
+        if(user.getId() != null){
+            wrapper.eq("id",user.getId());
+        }
+        if(user.getMobile() != null){
+            wrapper.eq("mobile",user.getMobile());
+        }
+        if(user.getDepartmentId() != null){
+            wrapper.eq("departmentId",user.getDepartmentId());
+        }
+        if(user.getFormOfEmployment() != null){
+            wrapper.eq("formOfEmployment",user.getFormOfEmployment());
+        }
+        Page list = userService.page(page, wrapper);
+        return Result.SUCCESS(list);
     }
 }

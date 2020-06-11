@@ -2,6 +2,10 @@ package cn.sh.softline.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -40,5 +44,9 @@ public class Role implements Serializable {
      */
     private String companyId;
 
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
 
+    @JsonIgnore
+    private Set<Permission> permissions = new HashSet<>();
 }
