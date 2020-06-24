@@ -9,3 +9,8 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+
+jwt:
+  config:
+    key: saas-ihrm
+    ttl: 360000
