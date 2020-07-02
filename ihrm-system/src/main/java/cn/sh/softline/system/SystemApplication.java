@@ -6,11 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "cn.sh.softline")
 @MapperScan("cn.sh.softline.system.mapper")
 public class SystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(SystemApplication.class,args);
     }
 
+    @Bean
+    public JwtUtils getJwtUtils(){
+        return new JwtUtils();
+    }
 }

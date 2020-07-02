@@ -4,17 +4,20 @@ package cn.sh.softline.system.controller;
 import cn.sh.softline.common.entity.Result;
 import cn.sh.softline.common.entity.ResultCode;
 import cn.sh.softline.common.utils.JwtUtils;
-import cn.sh.softline.exception.CommonException;
+import cn.sh.softline.common.utils.PermissionConstants;
+import cn.sh.softline.system.entity.Permission;
+import cn.sh.softline.system.entity.ProfileResult;
+import cn.sh.softline.system.entity.Role;
 import cn.sh.softline.system.entity.User;
 import cn.sh.softline.system.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.ResultSetMetaData;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +53,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "删除用户")
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping(value = "delete/{id}",name = "API-USER-DELETE")
     public Result delete(@PathVariable("id") String id) {
         boolean res = userService.removeById(id);
         if (res) {
@@ -109,12 +112,29 @@ public class UserController {
         if (user == null|| !user.getPassword().equals(password)) {
             return new Result(ResultCode.MOBILEANDPASSWORDERROR);
         }else{
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Role role:user.getRoles()) {
+                for (Permission permission:role.getPermissions()) {
+                    if(permission.getType() == PermissionConstants.PERMISSION_API){
+                        stringBuilder.append(permission.getCode()).append(",");
+                    }
+                }
+            }
             Map<String,Object> map = new HashMap<>();
             map.put("companyId",user.getCompanyId());
             map.put("companyName",user.getCompanyName());
+            map.put("apis",stringBuilder.toString());
             String token = jwtUtils.createJWT(user.getId(), user.getUsername(), map);
             return new Result(ResultCode.SUCCESS,token);
         }
 
     }
+    @PostMapping("/profile")
+    public Result profile(HttpServletRequest request){
+        Claims claims = (Claims)request.getAttribute("user_claims");
+        String userid = claims.getId();
+        User user = userService.getById(userid);
+        return new Result(ResultCode.SUCCESS,new ProfileResult(user));
+    }
+
 }
