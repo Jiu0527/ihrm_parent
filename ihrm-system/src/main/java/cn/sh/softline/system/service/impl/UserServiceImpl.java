@@ -50,4 +50,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setRoles(roles);
         userMapper.insert(user);
     }
+
+
+    public boolean save(User user) {
+
+        return false;
+    }
 }
